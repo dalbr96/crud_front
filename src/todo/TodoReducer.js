@@ -38,7 +38,7 @@ function TodoReducer(state, action) {
 
         case 'delete-category':
             const categoryUpDelete = state.category;
-            const categoryUpdate = todoUpDelete.list.filter((item) => {
+            const categoryUpdate = categoryUpDelete.list.filter((item) => {
                 return item.id !== action.id;
             });
             categoryUpDelete.list = categoryUpdate;

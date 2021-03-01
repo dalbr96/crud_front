@@ -4,12 +4,15 @@ import Store from '../storeProvider'
 
 const HOST_API = "http://localhost:8080/api";
 
-const TodoForm = () => {
+const TodoForm = (props) => {
 
     const formRef = useRef(null);
     const { dispatch, state: { todo } } = useContext(Store);
+
     const item = todo.item;
     const [state, setState] = useState(item);
+
+    const [state_id, set_id] = useState(props.category_id)
 
     const onAdd = (event) => {
         event.preventDefault();
@@ -17,7 +20,8 @@ const TodoForm = () => {
         const request = {
             name: state.name,
             id: null,
-            completed: false
+            completed: false,
+            categoryId: props.category_id
         };
 
 
@@ -43,7 +47,8 @@ const TodoForm = () => {
         const request = {
             name: state.name,
             id: item.id,
-            isCompleted: item.isCompleted
+            completed: item.isCompleted,
+            categoryId: props.category_id
         };
 
 

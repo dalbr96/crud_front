@@ -36,7 +36,8 @@ const CategoryForm = () => {
     }
 
 
-    return <form ref={formRef} className="row g-2 form-centered">
+    return <div><h2>Nueva Categoria</h2>
+    <form ref={formRef} className="row g-2 form-centered">
         <div className="col-auto">
             <input type="text" className="form-control" name="name" placeholder="Nueva Categoría" onChange={(event) => {
                 setState({ ...state, name: event.target.value })
@@ -47,6 +48,7 @@ const CategoryForm = () => {
             <button className="btn btn-primary" onClick={onAdd}>Crear</button>
         </div>
     </form>
+    </div>
 }
 
 export default CategoryForm;

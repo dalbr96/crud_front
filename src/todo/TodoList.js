@@ -3,7 +3,7 @@ import Store from '../storeProvider'
 
 const HOST_API = "http://localhost:8080/api";
 
-const TodoList = () => {
+const TodoList = (props) => {
     const { dispatch, state: { todo } } = useContext(Store);
     const currentList = todo.list;
 
@@ -67,7 +67,7 @@ const TodoList = () => {
                 </tr>
             </thead>
             <tbody>
-                {currentList.map((todo) => {
+                {currentList.filter((todo) => todo.categoryId === props.category_id).map((todo) => {
                     return <tr key={todo.id} style={todo.completed ? decorationDone : {}}>
                         <td>{todo.id}</td>
                         <td>{todo.name}</td>

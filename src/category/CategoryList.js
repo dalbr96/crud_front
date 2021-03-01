@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react"
 import Store from '../storeProvider'
-import TodoContainer from '../todo/TodoContainer'
+import TodoList from '../todo/TodoList'
+import TodoForm from '../todo/TodoForm'
 
 const HOST_API = "http://localhost:8080/api";
 
@@ -21,18 +22,22 @@ const CategoryList = () => {
 
 
     const onDelete = (id) => {
-        fetch(HOST_API + "/" + id + "/todo", {
+        fetch(`${HOST_API}/${id}/category`, {
             method: "DELETE"
         }).then((list) => {
-            dispatch({ type: "delete-item", id })
+            dispatch({ type: "delete-category", id })
         })
     };
 
 
     return currentList.map((category) => {
-        return <div><h2>{category.name}</h2>
-            <TodoContainer props = {category.id} />
-
+        return <div key = {category.id} className = "container p-4 category-div">
+           <div><span className = "title">{category.name} </span><button className="btn btn-danger" onClick={() => onDelete(category.id)}>Eliminar</button> </div> 
+           
+           <br />         
+            <TodoForm category_id = {category.id}/>
+            <TodoList category_id = {category.id}/>
+            <hr />
         </div>
     })
 }
